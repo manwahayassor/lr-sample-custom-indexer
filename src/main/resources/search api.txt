@@ -1,0 +1,14 @@
+http://localhost:8080/o/search/v1.0/search?nestedFields=embedded
+
+{
+  "attributes": {
+    "search.experiences.blueprint.external.reference.code": "M9A28_SEARCH_TASKS_BLUEPRINT",
+    "search.empty.search":true,
+    "search.experiences.taskStatus": "completed",
+    "search.experiences.taskPriority": "high",
+    "search.experiences.activityType": "type1",
+	"search.experiences.activityDescription": "premier",
+	"search.experiences.processusId": "565545",
+	"search.experiences.processusCode": "PRO-123456",
+  }
+}
