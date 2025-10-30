@@ -1,0 +1,3 @@
+Bundle-Name: custom-indexer
+Bundle-SymbolicName: com.liferay.samples.fbo.custom.indexer
+Bundle-Version: 1.0.0

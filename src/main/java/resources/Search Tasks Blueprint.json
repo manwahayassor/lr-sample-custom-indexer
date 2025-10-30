@@ -1,0 +1,217 @@
+{
+  "schemaVersion" : "1.1",
+  "title_i18n" : {
+    "en_US" : "Search Tasks"
+  },
+  "configuration" : {
+    "highlightConfiguration" : { },
+    "parameterConfiguration" : {
+      "parameters" : {
+        "search.experiences.activityType" : {
+          "type" : "String"
+        },
+        "search.experiences.taskPriority" : {
+          "type" : "String"
+        },
+        "exclude.task_status_completed" : {
+          "defaultValue" : "false",
+          "type" : "String"
+        },
+        "search.experiences.taskStatus" : {
+          "type" : "String"
+        },
+        "search.experiences.processusTitle" : {
+          "type" : "String"
+        }
+      }
+    },
+    "aggregationConfiguration" : { },
+    "generalConfiguration" : {
+      "searchableAssetTypes" : [ "com.liferay.object.model.ObjectDefinition#114769" ],
+      "clauseContributorsExcludes" : [ ],
+      "clauseContributorsIncludes" : [ "*" ]
+    },
+    "advancedConfiguration" : { },
+    "sortConfiguration" : { },
+    "queryConfiguration" : {
+      "applyIndexerClauses" : true
+    }
+  },
+  "description_i18n" : { },
+  "elementInstances" : [ {
+    "sxpElement" : {
+      "title_i18n" : {
+        "en_US" : "Dynamic Task Status/priority Filter"
+      },
+      "description_i18n" : {
+        "en_US" : "Filter tasks dynamically based on the provided task_status or priority parameter."
+      },
+      "elementDefinition" : {
+        "configuration" : {
+          "queryConfiguration" : {
+            "queryEntries" : [ {
+              "condition" : {
+                "exists" : {
+                  "parameterName" : "search.experiences.taskStatus"
+                }
+              },
+              "clauses" : [ {
+                "occur" : "filter",
+                "query" : {
+                  "bool" : {
+                    "must" : [ {
+                      "nested" : {
+                        "path" : "nestedFieldArray",
+                        "query" : {
+                          "bool" : {
+                            "must" : [ {
+                              "match" : {
+                                "nestedFieldArray.value_en_US" : {
+                                  "query" : "${search.experiences.taskStatus}"
+                                }
+                              }
+                            }, {
+                              "term" : {
+                                "nestedFieldArray.fieldName" : {
+                                  "value" : "taskStatus"
+                                }
+                              }
+                            } ]
+                          }
+                        },
+                        "ignore_unmapped" : false
+                      }
+                    } ]
+                  }
+                },
+                "context" : "query"
+              } ]
+            }, {
+              "condition" : {
+                "exists" : {
+                  "parameterName" : "search.experiences.taskPriority"
+                }
+              },
+              "clauses" : [ {
+                "occur" : "filter",
+                "query" : {
+                  "bool" : {
+                    "must" : [ {
+                      "nested" : {
+                        "path" : "nestedFieldArray",
+                        "query" : {
+                          "bool" : {
+                            "must" : [ {
+                              "match" : {
+                                "nestedFieldArray.value_en_US" : {
+                                  "query" : "${search.experiences.taskPriority}"
+                                }
+                              }
+                            }, {
+                              "term" : {
+                                "nestedFieldArray.fieldName" : {
+                                  "value" : "priority"
+                                }
+                              }
+                            } ]
+                          }
+                        },
+                        "ignore_unmapped" : false
+                      }
+                    } ]
+                  }
+                },
+                "context" : "query"
+              } ]
+            } ]
+          }
+        },
+        "icon" : "filter",
+        "category" : "filter"
+      }
+    },
+    "configurationEntry" : {
+      "queryConfiguration" : {
+        "queryEntries" : [ {
+          "condition" : {
+            "exists" : {
+              "parameterName" : "search.experiences.taskStatus"
+            }
+          },
+          "clauses" : [ {
+            "occur" : "filter",
+            "query" : {
+              "bool" : {
+                "must" : [ {
+                  "nested" : {
+                    "path" : "nestedFieldArray",
+                    "query" : {
+                      "bool" : {
+                        "must" : [ {
+                          "match" : {
+                            "nestedFieldArray.value_en_US" : {
+                              "query" : "${search.experiences.taskStatus}"
+                            }
+                          }
+                        }, {
+                          "term" : {
+                            "nestedFieldArray.fieldName" : {
+                              "value" : "taskStatus"
+                            }
+                          }
+                        } ]
+                      }
+                    },
+                    "ignore_unmapped" : false
+                  }
+                } ]
+              }
+            },
+            "context" : "query"
+          } ]
+        }, {
+          "condition" : {
+            "exists" : {
+              "parameterName" : "search.experiences.taskPriority"
+            }
+          },
+          "clauses" : [ {
+            "occur" : "filter",
+            "query" : {
+              "bool" : {
+                "must" : [ {
+                  "nested" : {
+                    "path" : "nestedFieldArray",
+                    "query" : {
+                      "bool" : {
+                        "must" : [ {
+                          "match" : {
+                            "nestedFieldArray.value_en_US" : {
+                              "query" : "${search.experiences.taskPriority}"
+                            }
+                          }
+                        }, {
+                          "term" : {
+                            "nestedFieldArray.fieldName" : {
+                              "value" : "priority"
+                            }
+                          }
+                        } ]
+                      }
+                    },
+                    "ignore_unmapped" : false
+                  }
+                } ]
+              }
+            },
+            "context" : "query"
+          } ]
+        } ]
+      }
+    },
+    "uiConfigurationValues" : {
+      "sxpElement" : "{\n  \"description_i18n\": {\n    \"en_US\": \"Filter tasks dynamically based on the provided task_status or priority parameter.\"\n  },\n  \"elementDefinition\": {\n    \"category\": \"filter\",\n    \"configuration\": {\n      \"queryConfiguration\": {\n        \"queryEntries\": [\n          {\n            \"clauses\": [\n              {\n                \"context\": \"query\",\n                \"occur\": \"filter\",\n                \"query\": {\n                  \"bool\": {\n                    \"must\": [\n                      {\n                        \"nested\": {\n                          \"ignore_unmapped\": false,\n                          \"path\": \"nestedFieldArray\",\n                          \"query\": {\n                            \"bool\": {\n                              \"must\": [\n                                {\n                                  \"match\": {\n                                    \"nestedFieldArray.value_en_US\": {\n                                      \"query\": \"${search.experiences.taskStatus}\"\n                                    }\n                                  }\n                                },\n                                {\n                                  \"term\": {\n                                    \"nestedFieldArray.fieldName\": {\n                                      \"value\": \"taskStatus\"\n                                    }\n                                  }\n                                }\n                              ]\n                            }\n                          }\n                        }\n                      }\n                    ]\n                  }\n                }\n              }\n            ],\n            \"condition\": {\n              \"exists\": {\n                \"parameterName\": \t\"search.experiences.taskStatus\"\n              }\n            }\n          },\n          {\n            \"clauses\": [\n              {\n                \"context\": \"query\",\n                \"occur\": \"filter\",\n                \"query\": {\n                  \"bool\": {\n                    \"must\": [\n                      {\n                        \"nested\": {\n                          \"ignore_unmapped\": false,\n                          \"path\": \"nestedFieldArray\",\n                          \"query\": {\n                            \"bool\": {\n                              \"must\": [\n                                {\n                                  \"match\": {\n                                    \"nestedFieldArray.value_en_US\": {\n                                      \"query\": \"${search.experiences.taskPriority}\"\n                                    }\n                                  }\n                                },\n                                {\n                                  \"term\": {\n                                    \"nestedFieldArray.fieldName\": {\n                                      \"value\": \"priority\"\n                                    }\n                                  }\n                                }\n                              ]\n                            }\n                          }\n                        }\n                      }\n                    ]\n                  }\n                }\n              }\n            ],\n            \"condition\": {\n              \"exists\": {\n                \"parameterName\": \"search.experiences.taskPriority\"\n              }\n            }\n          }\n        ]\n      }\n    },\n    \"icon\": \"filter\"\n  },\n  \"title_i18n\": {\n    \"en_US\": \"Dynamic Task Status/priority Filter\"\n  }\n}"
+    }
+  } ],
+  "externalReferenceCode" : "M9A28_SEARCH_TASKS_BLUEPRINT"
+}
